@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 
 # Callback function to handle incoming messages
 def on_message(client, userdata, message):
-    print(f"Received message '{str(message.payload.decode('utf-8'))}' on topic '{message.topic}'")
+    print(f"{str(message.payload.decode('utf-8'))}")
 
 # MQTT broker settings
 broker_address = "mqtt.eclipseprojects.io"
@@ -20,5 +20,8 @@ client.connect(broker_address, broker_port)
 # Subscribe to the group chat topic
 client.subscribe(topic)
 
-client.loop_forever()
-
+try:
+    client.loop_forever()
+except KeyboardInterrupt:
+    print("Keyboard interrupt detected. Exiting...")
+    client.disconnect()

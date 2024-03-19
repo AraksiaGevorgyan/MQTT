@@ -21,8 +21,12 @@ while True:
         break
     full_message = f"{username}: {message}"
     client.publish(topic, full_message)
-    print(f"Message '{full_message}' published to topic '{topic}'")
+    print(f"{full_message}")
     time.sleep(1)
 
 client.loop_stop()
 client.disconnect()
+
+
+
+
